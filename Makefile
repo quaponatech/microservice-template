@@ -58,7 +58,7 @@ ACBUILD := acbuild
 
 # Kubernetes related settings
 # TODO: Change to your kubernetes instance
-K8S_SERVER := $(shell minikube ip)
+K8S_SERVER := #$(shell minikube ip)
 KUBECTL := kubectl
 DEPLOYMENT_NAME := $(subst .,-,$(PROJECT_NAME)-$(VERSION))
 # TODO: Change to your own chosen service port
