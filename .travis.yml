@@ -5,7 +5,6 @@ go:
   - master
 os:
   - linux
-  - osx
 install:
   - go get -v -d -t github.com/golang/protobuf/...
   - go get -u github.com/golang/protobuf/protoc-gen-go
@@ -20,3 +19,5 @@ matrix:
   fast_finish: true
 script:
   - make
+  - make utest
+  - make mtest

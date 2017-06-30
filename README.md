@@ -1,4 +1,4 @@
-# A microservice template
+# A microservice template [![Build Status](https://travis-ci.org/quaponatech/microservice-template.svg)](https://travis-ci.org/quaponatech/microservice-template) [![gopkg](https://img.shields.io/badge/gopkg-microservice-blue.svg)](http://gopkg.in/quaponatech/microservice-template.v1)
 This projects targets to provide a template for a go based microservice. Things to be adapted are marked with a `TODO`
 within this repository.
 
