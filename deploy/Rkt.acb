@@ -1,0 +1,6 @@
+# TODO: Adapt paths, and names
+begin
+set-name microservice
+copy main /bin/main
+set-exec /bin/main
+write microservice.aci

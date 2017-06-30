@@ -1,0 +1,25 @@
+// TODO: Adapt the messages and services
+syntax = "proto3";
+option go_package = "protobuf";
+
+message Request {
+    string message = 1;
+}
+
+message Response {
+    string message = 1;
+}
+
+service MicroService {
+    // Returns a Response to the given Response
+    rpc Hello(Request) returns (Response);
+
+    // Message returns Stream
+    // rpc GetFriends(FriendsQuery) returns (stream FriendsData);
+
+    // Stream returns Message
+    // rpc SayHelloToFriends(stream FriendsData) returns (Response);
+
+    // Stream returns Stream
+    // rpc CallFriends(stream FriendsData) returns (stream ResponseData);
+}

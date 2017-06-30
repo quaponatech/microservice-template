@@ -1,0 +1,74 @@
+# TODO: Adapt needed dependencies
+# This is just a simple mongodb deployment for demonstration purposes
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mongo-3-4-3
+    version: 3.4.3
+  name: mongo-3-4-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-3-4-3
+      version: 3.4.3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mongo-3-4-3
+        version: 3.4.3
+      name: mongo-3-4-3
+    spec:
+      containers:
+      - args:
+        - --storageEngine=wiredTiger
+        - --smallfiles
+        - --auth
+        image: mongo:3.4.3
+        imagePullPolicy: IfNotPresent
+        name: mongo-3-4-3
+        securityContext:
+          privileged: false
+        volumeMounts:
+        - mountPath: /docker-entrypoint-initdb.d
+          name: nfs-storage
+          subPath: database
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      volumes:
+      - name: nfs-storage
+        nfs:
+          path: /srv/nfs
+          server: civhost01
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mongo-3-4-3
+    version: 3.4.3
+  name: mongo-3-4-3
+spec:
+  ports:
+  - port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    app: mongo-3-4-3
+    version: 3.4.3
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
