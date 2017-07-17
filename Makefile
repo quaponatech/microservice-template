@@ -255,7 +255,7 @@ dockerload: assertdockerimage
 	$(DOCKER) load -i $(IMAGE_PATH)
 
 # Publish the local docker image as 'latest'
-dockerpublish: docker dockerload
+dockerpublish: dockerload
 	$(DOCKER) tag $(IMAGE_NAME) $(TARGET_IMAGE_LATEST)
 	$(DOCKER) push $(TARGET_IMAGE_LATEST)
 	$(DOCKER) rmi -f $(IMAGE_NAME) $(TARGET_IMAGE_LATEST)
