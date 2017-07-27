@@ -76,7 +76,7 @@ func main() {
 			Destination: &privKeyFile,
 		},
 		cli.StringFlag{
-			Name:        "cafile,k",
+			Name:        "cafile,a",
 			Usage:       "TLS CA file",
 			Destination: &caFile,
 		},
