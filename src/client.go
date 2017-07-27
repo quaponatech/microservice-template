@@ -28,7 +28,7 @@ func (client *GrpcClientMicroService) Connect(info *grpcservice.ConnectionInfo) 
 	grpcClient := &grpcservice.GRPCClient{}
 
 	// Connect that to the service
-	if err := grpcClient.Connect(info); err != nil {
+	if err := grpcClient.ConnectMutual(info); err != nil {
 		return err
 	}
 

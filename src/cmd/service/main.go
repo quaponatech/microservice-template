@@ -44,6 +44,7 @@ func main() {
 		useTLS       bool
 		certFile     string
 		privKeyFile  string
+		caFile       string
 		logDirectory string
 		logLevel     int
 		dryRun       bool
@@ -73,6 +74,11 @@ func main() {
 			Name:        "privkeyfile,k",
 			Usage:       "TLS private key file",
 			Destination: &privKeyFile,
+		},
+		cli.StringFlag{
+			Name:        "cafile,k",
+			Usage:       "TLS CA file",
+			Destination: &caFile,
 		},
 		cli.StringFlag{
 			Name:        "logdir,d",
@@ -123,7 +129,7 @@ func main() {
 	app.Action = func(_ *cli.Context) error {
 		// Setup the service
 		serverName := "Microservice"
-		serverInstance := grpcservice.NewGRPCServer(useTLS, certFile, privKeyFile, port)
+		serverInstance := grpcservice.NewMutualGRPCServer(useTLS, certFile, privKeyFile, caFile, port)
 		serverLogger := server.NewLogger(serverName,
 			logDirectory,
 			appName+".log",
